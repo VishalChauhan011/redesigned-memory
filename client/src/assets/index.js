@@ -13,6 +13,11 @@ import money from './money.svg';
 import loader from './loader.svg';
 import thirdweb from './thirdweb.png';
 import banner from './banner.png';
+import instagram from './instagram.svg';
+import facebook from './facebook.svg';
+import twitter from './twitter.svg';
+import whatsapp from './whatsapp.svg';
+import supporters from './supporters.svg'
 
 export {
   tagType,
@@ -29,5 +34,10 @@ export {
   money,
   loader,
   thirdweb,
-  banner
+  banner,
+  instagram,
+  facebook,
+  twitter,
+  whatsapp,
+  supporters
 };
