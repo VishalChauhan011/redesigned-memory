@@ -80,12 +80,17 @@ const CampaignDetails = () => {
               <Icon name={link.name} link={link.link} imgUrl={link.imgUrl} />
             ))}
           </div>
-          <h3 className="text-[20px] text-black/[0.5] font-semibold mt-2 ">
+          <h3 className="text-[20px] text-black/[0.5] font-semibold mt-2 mb-[28px] ">
             Every share can bring something
           </h3>
+
+          <div className="flex flex-row justify-between">
+            <CountBox title="Gurgaon, India" value="Ajay Negi" />
+            <CountBox title="Gurgaon, India" value="Ajay Negi" />
+          </div>
         </div>
 
-        <div className="w-[468px] h-[871px] flex flex-col p-4 bg-[#FFFFFF] rounded-[10px] ">
+        <div className="w-[468px] h-[871px] flex flex-col p-4 bg-[#FFFFFF] drop-shadow-lg rounded-[10px] ">
           <div className="flex flex-row w-full items-center justify-evenly mt-[38px] ">
             <div className="h-[110px] w-[110px] rounded-[55px] bg-black "></div>
             <div className="flex-col">
@@ -95,13 +100,13 @@ const CampaignDetails = () => {
           </div>
 
           <div className="flex flex-row w-full items-center justify-evenly mt-[30px]">
-            <div className="flex-col justify-center ">
+            <div className="flex-col items-center justify-center ">
               <h3 className="text-[24px] font-bold text-black/[0.5] ">{`${donators.length}`}</h3>
               <h3 className="text-[20px] font-bold text-black/[0.5] ">
                 Supporters
               </h3>
             </div>
-            <div className="flex-col">
+            <div className="flex-col justify-center">
               <h3 className="text-[24px] font-bold text-black/[0.5] ">{`${remainingDays}`}</h3>
               <h3 className="text-[20px] font-bold text-black/[0.5] ">
                 Days Left
