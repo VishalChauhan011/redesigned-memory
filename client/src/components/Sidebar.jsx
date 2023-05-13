@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+
 // import { logo, sun } from "../assets";
 // import { navlinks } from "../constants";
 // import { useStateContext } from "../context";
@@ -32,7 +33,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const navigate = useNavigate();
-  const [isActive, setIsActive] = useState("dashboard");
+  const [isActive, setIsActive] = useState("/");
 
   const [isCampaignToggle, setIsCampaignToggle] = useState(true);
 

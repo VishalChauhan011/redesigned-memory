@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Popup } from "reactjs-popup";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ethers } from "ethers";
+import { CircularProgressbar } from "react-circular-progressbar";
 
 import { useStateContext } from "../context";
 import { CustomButton, CountBox, Loader } from "../components";
@@ -13,7 +14,7 @@ import { FormField } from "../components";
 const Icon = ({ name, link, imgUrl, handleClick }) => {
   return (
     <div
-      className="flex items-center justify-center w-[40px] h-[40px] rounded-[10px] bg-[#F2F2F2] ml-5 cursor-pointer "
+      className="flex items-center justify-center w-[40px] h-[40px] rounded-[10px] bg-[#F4ECE5] ml-5 cursor-pointer "
       onClick={handleClick}
     >
       <img src={imgUrl} alt={name} />
@@ -60,7 +61,7 @@ const CampaignDetails = () => {
           <img
             src={state.image}
             alt="campaign"
-            className="w-[739px] h-[410px] object-cover rounded-xl "
+            className="w-[739px] h-[410px] object-cover drop-shadow-lg rounded-xl "
           />
           {/* <div className="relative w-full h-[5px] bg-[#3a3a43] mt-2 ">
             <div
@@ -85,28 +86,65 @@ const CampaignDetails = () => {
           </h3>
 
           <div className="flex flex-row justify-between">
-            <CountBox title="Gurgaon, India" value="Ajay Negi" />
-            <CountBox title="Gurgaon, India" value="Ajay Negi" />
+            <CountBox title="Gurgaon, India" value={state.owner} />
+            {/* <CountBox title="Gurgaon, India" value="Ajay Negi" /> */}
           </div>
         </div>
 
         <div className="w-[468px] h-[871px] flex flex-col p-4 bg-[#FFFFFF] drop-shadow-lg rounded-[10px] ">
           <div className="flex flex-row w-full items-center justify-evenly mt-[38px] ">
-            <div className="h-[110px] w-[110px] rounded-[55px] bg-black "></div>
-            <div className="flex-col">
+            <div className="h-[120px] w-[120px] rounded-[55px]  ">
+              <CircularProgressbar
+                className="flex "
+                value={calculateBarPercentage(
+                  state.target,
+                  state.amountCollected
+                )}
+                text={`${calculateBarPercentage(
+                  state.target,
+                  state.amountCollected
+                )}%`}
+                styles={{
+                  pathTransitionDuration: 0.5,
+                  path: {
+                    stroke: "#4acd8d",
+                    // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                    strokeLinecap: "butt",
+                    // Customize transition animation
+                    transition: "stroke-dashoffset 0.5s ease 0s",
+                    // Rotate the path
+                    transform: "rotate(0.25turn)",
+                    transformOrigin: "center center",
+                  },
+                  trail: {
+                    stroke: "#3a3a43",
+                    strokeLinecap: "butt",
+                    transform: "rotate(0.25turn)",
+                    transformOrigin: "center center",
+                  },
+                  text: {
+                    fontSize: "16px",
+                    fontWeight: "bold",
+                    textAlign: "start",
+                  },
+                }}
+                strokeWidth={5}
+              />
+            </div>
+            <div className="flex-col items-center text-center">
               <h3 className="text-[24px] font-bold text-black">{`${state.amountCollected} ETH`}</h3>
               <h3 className="text-[20px] font-bold text-black/[0.5] ">{`Raised of ${state.target}`}</h3>
             </div>
           </div>
 
           <div className="flex flex-row w-full items-center justify-evenly mt-[30px]">
-            <div className="flex-col items-center justify-center ">
+            <div className="flex-col text-center">
               <h3 className="text-[24px] font-bold text-black/[0.5] ">{`${donators.length}`}</h3>
               <h3 className="text-[20px] font-bold text-black/[0.5] ">
                 Supporters
               </h3>
             </div>
-            <div className="flex-col justify-center">
+            <div className=" flex-col text-center">
               <h3 className="text-[24px] font-bold text-black/[0.5] ">{`${remainingDays}`}</h3>
               <h3 className="text-[20px] font-bold text-black/[0.5] ">
                 Days Left
@@ -114,7 +152,7 @@ const CampaignDetails = () => {
             </div>
           </div>
 
-          <div className="w-full items-center justify-center mt-[52px] ">
+          <div className="flex w-full items-center justify-center mt-[52px] ">
             <Popup
               trigger={
                 <button className="w-[354px] h-[65px] bg-[#3661EB] font-bold rounded-[10px] text-[24px] ">
@@ -126,7 +164,7 @@ const CampaignDetails = () => {
               nested
             >
               {(close) => (
-                <div className="w-[600px] h-[550px] bg-white rounded-[10px] drop-shadow-2xl flex flex-col items-center ">
+                <div className="w-[600px]  bg-white rounded-[10px] drop-shadow-2xl flex flex-col items-center ">
                   <h3 className="font-bold text-black text-[24px] my-8 ">
                     Add a Donation Amount
                   </h3>
@@ -138,7 +176,7 @@ const CampaignDetails = () => {
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
                   />
-                  <div className="w-[150px] ">
+                  <div className="w-full px-10 mt-6 ">
                     <FormField
                       labelName="Your Name *"
                       inputType="text"
@@ -146,7 +184,25 @@ const CampaignDetails = () => {
                       handleChange={(e) => handleFormFieldChange("name", e)}
                     />
                   </div>
-                  <div className="w-full justify-center">
+
+                  <div className="w-full px-10 mt-6 ">
+                    <FormField
+                      labelName="Your Name *"
+                      inputType="text"
+                      className="text-[#0000000] "
+                      handleChange={(e) => handleFormFieldChange("name", e)}
+                    />
+                  </div>
+
+                  <div className="w-full px-10 mt-6 ">
+                    <FormField
+                      labelName="Your Name *"
+                      inputType="text"
+                      className="text-[#0000000] "
+                      handleChange={(e) => handleFormFieldChange("name", e)}
+                    />
+                  </div>
+                  <div className="flex w-full justify-center mt-8 mb-12">
                     <CustomButton
                       btnType="button"
                       title="Contribute"
@@ -175,6 +231,34 @@ const CampaignDetails = () => {
             <h3 className="text-[24px] ml-4 font-bold text-black/[0.5]  ">
               Supporters
             </h3>
+          </div>
+
+          <div className="w-full h-full mt-[20px] justify-items-start flex flex-col gap-4 ">
+            {donators.length > 0 ? (
+              donators.map((item, index) => (
+                <>
+                  <div
+                    key={`${item.donator}-${index}`}
+                    className="flex flex-row justify-items-start items-center"
+                  >
+                    <div className="w-[48px] h-[48px] bg-black/[0.5] rounded-[24px] mr-4 "></div>
+                    <div className="flex flex-col  justify-center">
+                      <p className="w-full font-epilogue  font-bold text-[18px] text-[#000000] leading-[26px] truncate">
+                        {item.donator.slice(0, 20) + "..."}
+                      </p>
+                      <p className="font-epilogue font-bold text-[16px] text-[#808191] leading-[26px] ">
+                        {item.donation}
+                      </p>
+                    </div>
+                  </div>
+                  <hr />
+                </>
+              ))
+            ) : (
+              <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify ">
+                No donators yet. Be the first one!
+              </p>
+            )}
           </div>
 
           {/* <p className="font-epilogue font-medium text-[20px] leading-[30px] text-center text-[#808191] ">
@@ -254,7 +338,7 @@ const CampaignDetails = () => {
             </div>
           </div>
 
-          <div>
+          {/* <div>
             <h4 className="font-epilogue font-semibold text-[18px] text-[#000000] uppercase">
               Donators
             </h4>
@@ -279,14 +363,14 @@ const CampaignDetails = () => {
                 </p>
               )}
             </div>
-          </div>
+          </div> */}
         </div>
 
-        <div className="flex-1">
+        {/* <div className="flex-1">
           <h4 className="font-epilogue font-semibold text-[18px] text-[#000000] uppercase">
             Fund
           </h4>
-        </div>
+        </div> */}
       </div>
     </div>
   );
