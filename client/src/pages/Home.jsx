@@ -8,7 +8,7 @@ import CreateCampaign from "./CreateCampaign";
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [campaigns, setCampaigns] = useState([]);
- 
+
 
   const { address, contract, getCampaigns } = useStateContext();
 
@@ -29,9 +29,8 @@ const Home = () => {
 
   return (
     <div className="items-center flex flex-col">
-      
+
       <DisplayCampaigns
-        title="All Campaigns"
         campaigns={campaigns}
         isLoading={isLoading}
       />

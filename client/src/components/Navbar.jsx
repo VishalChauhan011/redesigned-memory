@@ -31,28 +31,32 @@ const Navbar = () => {
       </div> */}
 
       <div className="lg:flex-1 flex flex-row  py-2 pl-4 items-center">
-        <Link to="/">
-        <img src={logo} alt="logo" className="w-[50px] h-[50px] ml-10 " />
-        </Link>
+
         <h3 className="text-white text-[24px] font-bold pl-4">Start Me Up</h3>
       </div>
 
       <div className="lg:flex-1 flex flex-row items-center text-[24px] gap-8">
-        <Link>
-          <h2 className="text-white">About us</h2>
-        </Link>
-        <Link>
-          <h2 className="text-white">Contact</h2>
-        </Link>
-        <Link>
-          <h2 className="text-white">Blog</h2>
-        </Link>
+        <div className="flex flex-row w-[458px] my-10 pl-4 h-[52px] bg-transparent border border-[#eef1f7] rounded-[10px]">
+          <input
+            type="text"
+            placeholder="Search for posts"
+            className="flex w-full  font-epilogue font-normal text-[14px] placeholder:text-[#b2c0e3] text-[#f7f3f3] bg-transparent outline-none"
+          />
+
+          <div className="w-[72px] h-full  bg-[#fefefe] flex justify-center rounded-r-lg  items-center cursor-pointer">
+            <img
+              src={search}
+              alt="search"
+              className="w-[20px] h-[20px] object-contain"
+            />
+          </div>
+        </div>
       </div>
 
       <div className="sm:flex hidden flex-row justify-end gap-6 p-4 mr-10">
         <CustomButton
           btnType="button"
-          title={address ? "Create a campaign" : "Connect"}
+          title={address ? "Create a posting" : "Connect Using Metamask"}
           styles={address ? "bg-[#1dc071]" : "bg-[#8c6dfd]"}
           handleClick={() => {
             if (address) navigate("create-campaign");
@@ -75,7 +79,6 @@ const Navbar = () => {
       <div className="sm:hidden flex justify-between items-center relative">
         <div className="w-[40px] h-[40px] rounded-[10px] bg-[#2c2f32] items-center justify-center flex cursor-pointer ">
           <img
-            src={logo}
             alt="user"
             className="w-[60%] h-[60%] object-contain"
           />
@@ -127,7 +130,7 @@ const Navbar = () => {
           <div className="flex mx-4">
             <CustomButton
               btnType="button"
-              title={address ? "Create a campaign" : "Connect"}
+              title={address ? "Create a Posting" : "Connect Using Metamask"}
               styles={address ? "bg-[#1dc071]" : "bg-[#8c6dfd]"}
               handleClick={() => {
                 if (address) navigate("create-campaign");

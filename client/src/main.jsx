@@ -11,7 +11,6 @@ import LoginPage from "./pages/LoginPage";
 import "./App.css";
 
 const app = document.getElementById("root");
-// create a root
 const root = createRoot(app);
 
 root.render(

@@ -57,7 +57,7 @@ const Sidebar = () => {
         }`}
         onClick={handleCampaignToggle}
       >
-        Campaign
+        All Posts
       </button>
       <button
         className={`w-[50%] h-full rounded-r-lg ${
@@ -67,7 +67,7 @@ const Sidebar = () => {
         } `}
         onClick={handleCreateCampaignToggle}
       >
-        Create Campaign
+        Create Post
       </button>
     </div>
   );

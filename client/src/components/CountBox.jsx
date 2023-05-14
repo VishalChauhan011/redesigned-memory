@@ -13,7 +13,7 @@ const CountBox = ({ title, value }) => {
       </div>
       <div className="ml-4 my-[16px] ">
         <h4 className="text-black/[0.5] text-[14px] font-semibold ">
-          Campaigner
+          Creator
         </h4>
         <h4 className="text-black font-bold text-[16px]">
           {value.slice(0, 10) + "..."}

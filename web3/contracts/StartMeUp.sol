@@ -27,7 +27,6 @@ contract StartMeUp {
         string memory _image
     ) public returns (uint256) {
         Campaign storage campaign = campaigns[numberOfCampaign];
-
         require(
             campaign.deadline < block.timestamp,
             "The deadline should be a date in the future."
@@ -39,22 +38,16 @@ contract StartMeUp {
         campaign.deadline = _deadline;
         campaign.image = _image;
         campaign.amountCollected = 0;
-
         numberOfCampaign++;
-
         return numberOfCampaign - 1;
     }
 
     function donateToCampaign(uint256 _id) public payable {
         uint256 amount = msg.value;
-
         Campaign storage campaign = campaigns[_id];
-
         campaign.donators.push(msg.sender);
         campaign.donations.push(amount);
-
         (bool sent, ) = payable(campaign.owner).call{value: amount}("");
-
         if (sent) {
             campaign.amountCollected += amount;
         }

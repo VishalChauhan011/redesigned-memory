@@ -44,18 +44,12 @@ const CreateCampaign = () => {
   };
 
   return (
-    <div >
+    <div className="text-black">
       {isLoading && "Loading..."}
 
       {/* <div className="w-[1240px] h-[162px] my-10 ">
         <img src={banner} alt="money" className="w-full h-full object-contain" />
       </div> */}
-
-      <div className="flex justify-center items-center p-[16px] sm:min-w-[380px] bg-[#3a3a43] rounded-[10px]">
-        <h1 className="font-epilogue font-bold sm-text[25px] text[24px] leading-[38px] text-white">
-          Start a campaign
-        </h1>
-      </div>
 
       <form
         onSubmit={handleSubmit}
@@ -71,8 +65,8 @@ const CreateCampaign = () => {
             handleChange={(e) => handleFormFieldChange("name", e)}
           />
           <FormField
-            labelName="Campaign Title *"
-            placeholder="Write a title"
+            labelName="Headline *"
+            placeholder="Write a Headline"
             inputType="text"
             value={form.title}
             handleChange={(e) => handleFormFieldChange("title", e)}
@@ -115,7 +109,7 @@ const CreateCampaign = () => {
           />
         </div>
         <FormField
-          labelName="Campaign image *"
+          labelName="Image *"
           placeholder="Place image URL of your campaign"
           inputType="url"
           value={form.image}
